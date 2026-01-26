@@ -1,0 +1,5 @@
+
+# Built binaries
+tinymount
+tinymount-*
+*.exe
