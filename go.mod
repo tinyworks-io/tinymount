@@ -1,4 +1,4 @@
-module github.com/tinyworks/tinymount
+module github.com/tinyworks-io/tinymount
 
 go 1.24.0
 

@@ -4,7 +4,7 @@ set -e
 # tinymount installer
 # Usage: curl -sSL https://tinymount.com/install.sh | sh
 
-REPO="tinyworks/tinymount"
+REPO="tinyworks-io/tinymount"
 INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
 BINARY="tinymount"
 

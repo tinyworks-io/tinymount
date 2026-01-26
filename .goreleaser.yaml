@@ -45,7 +45,7 @@ changelog:
 
 release:
   github:
-    owner: tinyworks
+    owner: tinyworks-io
     name: tinymount
   draft: false
   prerelease: auto
