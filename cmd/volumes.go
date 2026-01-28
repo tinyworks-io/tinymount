@@ -6,9 +6,9 @@ import (
 	"text/tabwriter"
 
 	"github.com/spf13/cobra"
-	"github.com/tinyworks/tinymount/internal/api"
-	"github.com/tinyworks/tinymount/internal/crypto"
-	"github.com/tinyworks/tinymount/internal/keyring"
+	"github.com/tinyworks-io/tinymount/internal/api"
+	"github.com/tinyworks-io/tinymount/internal/crypto"
+	"github.com/tinyworks-io/tinymount/internal/keyring"
 )
 
 var (

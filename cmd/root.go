@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/tinyworks/tinymount/internal/api"
-	"github.com/tinyworks/tinymount/internal/config"
+	"github.com/tinyworks-io/tinymount/internal/api"
+	"github.com/tinyworks-io/tinymount/internal/config"
 )
 
 var (

@@ -10,9 +10,9 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"github.com/tinyworks/tinymount/internal/crypto"
-	"github.com/tinyworks/tinymount/internal/juicefs"
-	"github.com/tinyworks/tinymount/internal/keyring"
+	"github.com/tinyworks-io/tinymount/internal/crypto"
+	"github.com/tinyworks-io/tinymount/internal/juicefs"
+	"github.com/tinyworks-io/tinymount/internal/keyring"
 )
 
 // MountState tracks the state of a mounted volume

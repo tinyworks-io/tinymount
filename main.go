@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/tinyworks/tinymount/cmd"
+	"github.com/tinyworks-io/tinymount/cmd"
 )
 
 // Set by goreleaser at build time

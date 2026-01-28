@@ -14,7 +14,7 @@ tinymount mount datasets ~/data
 curl -sSL https://tinymount.com/install.sh | sh
 ```
 
-Or download from [releases](https://github.com/tinyworks/tinymount/releases).
+Or download from [releases](https://github.com/tinyworks-io/tinymount/releases).
 
 ### Requirements
 

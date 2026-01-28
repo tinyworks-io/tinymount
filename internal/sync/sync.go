@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tinyworks/tinymount/internal/api"
+	"github.com/tinyworks-io/tinymount/internal/api"
 )
 
 const (

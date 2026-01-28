@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	"github.com/spf13/cobra"
-	"github.com/tinyworks/tinymount/internal/config"
+	"github.com/tinyworks-io/tinymount/internal/config"
 	"golang.org/x/term"
 )
 
