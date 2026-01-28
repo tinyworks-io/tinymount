@@ -260,3 +260,111 @@ func (c *Client) GetUsage() (*UsageResponse, error) {
 	}
 	return &resp, nil
 }
+
+// Mount tracking
+
+// RegisterMountRequest is the request body for registering a mount
+type RegisterMountRequest struct {
+	MachineID   string `json:"machine_id"`
+	MachineName string `json:"machine_name,omitempty"`
+}
+
+// RegisterMountResponse is the response from POST /mounts/:volumeId/register
+type RegisterMountResponse struct {
+	MountID           string `json:"mount_id"`
+	VolumeID          string `json:"volume_id,omitempty"`
+	HeartbeatInterval int    `json:"heartbeat_interval"` // seconds
+	Message           string `json:"message"`
+}
+
+// HeartbeatResponse is the response from POST /mounts/:mountId/heartbeat
+type HeartbeatResponse struct {
+	MountID       string `json:"mount_id"`
+	LastHeartbeat int64  `json:"last_heartbeat"`
+	Message       string `json:"message"`
+}
+
+// UnregisterMountResponse is the response from DELETE /mounts/:mountId
+type UnregisterMountResponse struct {
+	MountID  string `json:"mount_id"`
+	VolumeID string `json:"volume_id"`
+	Message  string `json:"message"`
+}
+
+// ActiveMount represents an active mount
+type ActiveMount struct {
+	ID                    string `json:"id"`
+	VolumeID              string `json:"volume_id"`
+	VolumeName            string `json:"volume_name"`
+	MachineID             string `json:"machine_id"`
+	MachineName           string `json:"machine_name"`
+	LastHeartbeat         string `json:"last_heartbeat"`
+	SecondsSinceHeartbeat int    `json:"seconds_since_heartbeat"`
+	MountedAt             string `json:"mounted_at"`
+}
+
+// ListMountsResponse is the response from GET /mounts
+type ListMountsResponse struct {
+	Mounts []ActiveMount `json:"mounts"`
+	Count  int           `json:"count"`
+	Limit  int           `json:"limit"`
+	Plan   string        `json:"plan"`
+}
+
+// MountLimitsResponse is the response from GET /mounts/limits
+type MountLimitsResponse struct {
+	Current   int    `json:"current"`
+	Limit     int    `json:"limit"`
+	Available int    `json:"available"`
+	Plan      string `json:"plan"`
+}
+
+// RegisterMount registers a new active mount with the API
+func (c *Client) RegisterMount(volumeID string, req RegisterMountRequest) (*RegisterMountResponse, error) {
+	var resp RegisterMountResponse
+	err := c.doRequest("POST", "/mounts/"+volumeID+"/register", req, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return &resp, nil
+}
+
+// SendHeartbeat sends a heartbeat for an active mount
+func (c *Client) SendHeartbeat(mountID string) (*HeartbeatResponse, error) {
+	var resp HeartbeatResponse
+	err := c.doRequest("POST", "/mounts/"+mountID+"/heartbeat", nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return &resp, nil
+}
+
+// UnregisterMount unregisters a mount when unmounting
+func (c *Client) UnregisterMount(mountID string) (*UnregisterMountResponse, error) {
+	var resp UnregisterMountResponse
+	err := c.doRequest("DELETE", "/mounts/"+mountID, nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return &resp, nil
+}
+
+// ListMounts returns all active mounts for the current user
+func (c *Client) ListMounts() (*ListMountsResponse, error) {
+	var resp ListMountsResponse
+	err := c.doRequest("GET", "/mounts", nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return &resp, nil
+}
+
+// GetMountLimits returns mount limit info for the current user
+func (c *Client) GetMountLimits() (*MountLimitsResponse, error) {
+	var resp MountLimitsResponse
+	err := c.doRequest("GET", "/mounts/limits", nil, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return &resp, nil
+}
